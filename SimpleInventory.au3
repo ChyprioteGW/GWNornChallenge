@@ -10,9 +10,9 @@
     You can add more configuration very easily if you know what you're doing
 
     Configuration:
-      - set $BAGS_TO_USE to the number of bafs you'll be using. The bot will not touch the others
-      - edit CanStore() function to decide what items to keep in your chest
-      - edit CanSell()  function to decide what items to sell to the merchant
+    - set $BAGS_TO_USE to the number of bafs you'll be using. The bot will not touch the others
+    - edit CanStore() function to decide what items to keep in your chest
+    - edit CanSell()  function to decide what items to sell to the merchant
     Note that Identify() will identify everything in your inventory, you can edit it to filter which items to ident
     Constants are defined at the bottom of this file
 #ce
@@ -22,18 +22,18 @@ Global $BAGS_TO_USE = 4
 
 #Region Inventory
 Func Inventory()
-	Out("Storing")
-	Store()
-	Out("Identifying")
-	Identify()
-	Out("Selling")
-	Sell()
+    Out("Storing")
+    Store()
+    Out("Identifying")
+    Identify()
+    Out("Selling")
+    Sell()
 
-	RndSleep(1000)
-	If GetGoldCharacter() > 80000 Then
-		Out("Storing 80K")
-		DepositGold(80000)
-	EndIf
+    RndSleep(1000)
+    If GetGoldCharacter() > 80000 Then
+        Out("Storing 80K")
+        DepositGold(80000)
+    EndIf
 EndFunc
 
 ;Counts open slots in your Imventory
@@ -45,11 +45,11 @@ Func CountSlots()
         $count += DllStructGetData($bag, 'Slots') - DllStructGetData($bag, 'ItemsCount')
     Next
 
-	Return $count
+    Return $count
 EndFunc ;CountSlots
 
 Func InventoryIsFull()
-	Return CountSlots() = 0
+    Return CountSlots() = 0
 EndFunc ;InventoryIsFull
 #EndRegion Inventory
 
@@ -57,11 +57,11 @@ EndFunc ;InventoryIsFull
 Func Store()
     Local $item, $bag
 
-	For $i = 1 To $BAGS_TO_USE
+    For $i = 1 To $BAGS_TO_USE
         $bag = Getbag($i)
 
         For $j = 1 To DllStructGetData($bag, 'Slots')
-			$item = GetItemBySlot($i, $j)
+            $item = GetItemBySlot($i, $j)
             If DllStructGetData($item, "Id") == 0 Then ContinueLoop
             If CanStore($item) Then
                 StoreItem($item) ;hasSleep
@@ -72,33 +72,33 @@ Func Store()
 EndFunc ;Store
 Func CanStore($item)
     Local $ModelID = DllStructGetData($item, "ModelId")
-	Local $rarity = GetRarity($item)
-	Local $requirement = GetItemReq($item)
+    Local $rarity = GetRarity($item)
+    Local $requirement = GetItemReq($item)
 
-	If $rarity == $RARITY_GOLD          Then Return True
-	If $rarity == $RARITY_BLUE          Then Return False
+    If $rarity == $RARITY_GOLD          Then Return True
+    If $rarity == $RARITY_BLUE          Then Return False
     If $rarity == $RARITY_PURPLE        Then Return False
 
-	If $ModelID == $ITEM_DYES Then
-		;Uncomment for Only black and white dyes
-		;Local $ExtraID = DllStructGetData($item, "ExtraId")
-		;Return $ExtraID <> $ITEM_BLACK_DYE And $ExtraID <> $ITEM_WHITE_DYE)
-		Return False
+    If $ModelID == $ITEM_DYES Then
+        ;Uncomment for Only black and white dyes
+        ;Local $ExtraID = DllStructGetData($item, "ExtraId")
+        ;Return $ExtraID <> $ITEM_BLACK_DYE And $ExtraID <> $ITEM_WHITE_DYE)
+        Return False
     EndIf ;Dies
 
-	If InArray($ModelID, $ALL_TOMES_ARRAY)          Then Return True ;Tomes
-	If InArray($ModelID, $ALL_MATERIALS_ARRAY)	    Then Return True ;Materials
-	If InArray($ModelID, $STACKABLE_TROPHIES_ARRAY)	Then Return False ;Trophies
-	If InArray($ModelID, $ALL_TITLE_ITEMS)			Then Return False ;Party, Alcohol, Sweet
-	If InArray($ModelID, $ALL_SCROLLS_ARRAY)		Then Return True ;Scrolls
-	If $ModelID == $ITEM_LOCKPICK           		Then Return False ;Lockpicks, Kits
-	If InArray($ModelID, $WEAPON_MOD_ARRAY)			Then Return False ;Weapon mods
+    If InArray($ModelID, $ALL_TOMES_ARRAY)          Then Return True ;Tomes
+    If InArray($ModelID, $ALL_MATERIALS_ARRAY)	    Then Return True ;Materials
+    If InArray($ModelID, $STACKABLE_TROPHIES_ARRAY)	Then Return False ;Trophies
+    If InArray($ModelID, $ALL_TITLE_ITEMS)			Then Return False ;Party, Alcohol, Sweet
+    If InArray($ModelID, $ALL_SCROLLS_ARRAY)		Then Return True ;Scrolls
+    If $ModelID == $ITEM_LOCKPICK           		Then Return False ;Lockpicks, Kits
+    If InArray($ModelID, $WEAPON_MOD_ARRAY)			Then Return False ;Weapon mods
 
-	; TODO: do not pickup those
-	If InArray($ModelID, $MAP_PIECE_ARRAY)			Then Return False
+    ; TODO: do not pickup those
+    If InArray($ModelID, $MAP_PIECE_ARRAY)			Then Return False
     If $rarity == $RARITY_WHITE 					Then Return False
 
-	Return False
+    Return False
 EndFunc ;CanStore
 Func StoreItem($item)
     Local $slot
@@ -144,7 +144,7 @@ Func StoreInEmptySlot($item)
         Next
     Next
 
-	Return 0
+    Return 0
 EndFunc ;StoreInEmptySlot
 #EndRegion Store
 
@@ -153,15 +153,15 @@ Func Identify()
     Local $item, $bag
     
     RetrieveIdentificationKit()
-	For $i = 1 To $BAGS_TO_USE
+    For $i = 1 To $BAGS_TO_USE
         $bag = GetBag($i)
         
-		For $j = 1 To DllStructGetData($bag, "slots")
-			$item = GetItemBySlot($i, $j)
-			If DllStructGetData($item, "Id") == 0 Then ContinueLoop
-			IdentifyItem($item) ;hasSleep
-		Next
-	Next
+        For $j = 1 To DllStructGetData($bag, "slots")
+            $item = GetItemBySlot($i, $j)
+            If DllStructGetData($item, "Id") == 0 Then ContinueLoop
+            IdentifyItem($item) ;hasSleep
+        Next
+    Next
 EndFunc ;Identify
 Func RetrieveIdentificationKit()
     If FindIdentificationKit() = 0 Then
@@ -183,57 +183,57 @@ Func RetrieveIdentificationKit()
 
 #Region Sell
 Func Sell()
-	Local $item, $bag
+    Local $item, $bag
 
-	For $i = 1 To $BAGS_TO_USE
-		$bag = Getbag($i)
+    For $i = 1 To $BAGS_TO_USE
+        $bag = Getbag($i)
 
         For $j = 1 To DllStructGetData($bag, 'Slots')
-			$item = GetItemBySlot($i, $j)
+            $item = GetItemBySlot($i, $j)
             If DllStructGetData($item, "Id") == 0 Then ContinueLoop
             If CanSell($item) Then 
                 SellItem($item) ;noSleep
-				RndSleep(250)
-			EndIf
+                RndSleep(250)
+            EndIf
         Next
     Next
 EndFunc ;Sell
 Func CanSell($item)
-	Local $ModelID = DllStructGetData($item, "ModelId")
-	Local $rarity = GetRarity($item)
-	Local $requirement = GetItemReq($item)
+    Local $ModelID = DllStructGetData($item, "ModelId")
+    Local $rarity = GetRarity($item)
+    Local $requirement = GetItemReq($item)
 
-	If $rarity == $RARITY_GOLD          Then Return True
-	If $rarity == $RARITY_BLUE          Then Return True
-	If $rarity == $RARITY_PURPLE        Then Return True
+    If $rarity == $RARITY_GOLD          Then Return True
+    If $rarity == $RARITY_BLUE          Then Return True
+    If $rarity == $RARITY_PURPLE        Then Return True
 
-	If $ModelID == $ITEM_DYES Then
-		;Uncomment for Only black and white dyes
-		;Local $ExtraID = DllStructGetData($item, "ExtraId")
-		;Return $ExtraID <> $ITEM_BLACK_DYE And $ExtraID <> $ITEM_WHITE_DYE)
-		Return False
-	EndIf ;Dies
+    If $ModelID == $ITEM_DYES Then
+        ;Uncomment for Only black and white dyes
+        ;Local $ExtraID = DllStructGetData($item, "ExtraId")
+        ;Return $ExtraID <> $ITEM_BLACK_DYE And $ExtraID <> $ITEM_WHITE_DYE)
+        Return False
+    EndIf ;Dies
 
-	If InArray($ModelID, $ALL_TOMES_ARRAY)          Then Return False ;Tomes
-	If InArray($ModelID, $ALL_MATERIALS_ARRAY)	    Then Return False ;Materials
-	If InArray($ModelID, $STACKABLE_TROPHIES_ARRAY)	Then Return False ;Trophies
-	If InArray($ModelID, $ALL_TITLE_ITEMS)			Then Return False ;Party, Alcohol, Sweet
-	If InArray($ModelID, $ALL_SCROLLS_ARRAY)		Then Return False ;Scrolls
-	If InArray($ModelID, $GENERAL_ITEMS_ARRAY)		Then Return False ;Lockpicks, Kits
-	If InArray($ModelID, $WEAPON_MOD_ARRAY)			Then Return False ;Weapon mods
+    If InArray($ModelID, $ALL_TOMES_ARRAY)          Then Return False ;Tomes
+    If InArray($ModelID, $ALL_MATERIALS_ARRAY)	    Then Return False ;Materials
+    If InArray($ModelID, $STACKABLE_TROPHIES_ARRAY)	Then Return False ;Trophies
+    If InArray($ModelID, $ALL_TITLE_ITEMS)			Then Return False ;Party, Alcohol, Sweet
+    If InArray($ModelID, $ALL_SCROLLS_ARRAY)		Then Return False ;Scrolls
+    If InArray($ModelID, $GENERAL_ITEMS_ARRAY)		Then Return False ;Lockpicks, Kits
+    If InArray($ModelID, $WEAPON_MOD_ARRAY)			Then Return False ;Weapon mods
 
-	; TODO: do not pickup those
-	If InArray($ModelID, $MAP_PIECE_ARRAY)			Then Return True
+    ; TODO: do not pickup those
+    If InArray($ModelID, $MAP_PIECE_ARRAY)			Then Return True
     If $rarity == $RARITY_WHITE 					Then Return True
 
-	Return True
+    Return True
 EndFunc ;CanSell
 #EndRegion Sell
 
 #Region Helpers
 Func InArray($modelId, $array)
     For $p = 0 To (UBound($array) -1)
-		If $modelId == $array[$p] Then Return True
+        If $modelId == $array[$p] Then Return True
     Next
     Return False
 EndFunc
