@@ -1,0 +1,42 @@
+HM oetn
+olaf
+
+Equipement : Feel free with armor, just need a staff NRJ+20.
+
+Build :	 You : OACjAuiKpRXTOgfTIT+gPOWTQTA
+
+	 Hero 1 :OAhjUwGZYOL1qQVdyJ8GnU7LGA
+	 Hero 2 :OANCY8zDDRgEQurvOtY9oqC
+	 Hero 3 :OANDY6ttSSVVVMi+DGN1EtE0EA
+	 Hero 4 :OANDUshvSMEoBVBVVKg1DvO3VA
+	 Hero 5 :OQhkAgC7gFqDNw01DyBcthZG4iB
+	 Hero 6 :OgljosMqpOAD62YFZQMwFCgdMA
+	 Hero 7 :OASjUwHDJTLVVBoBJg4BOTNTXMA
+
+This is what i use, you are free to use what you want as hero and buildteam, they just need to be strong :)
+Follow my exemple else.
+
+Ps : There is 4 necro in my exemple team, you need to get razah, and then change his primary profession 
+(of course you can) by going isle of nameless (out of great temple of blatazar) and talk to razah
+
+# For characters who don’t have Faction. I added an option without spirits
+- Slot 1: Enchantment, after Free Build
+
+Dervish Build: OgCjkqrK7SlXQXjXCYWgDYiXsXA
+
+Slot 1: Faithful_Intervention	, after Free Build
+
+ ====================================================================
+	Changelog V2.9 ((March the 3th  2019) by Bibopp :
+	- GUI Update :
+	- Resized interface window
+	INIT
+	- Character selector is not an input.
+	- Added an Actions Selector
+	DIFFICULTY
+	- Added difficulty CheckBox (Normal & Hard mode)
+	- Added Select CheckBox (Spirits mode or Dervish)
+
+	Changelog V3.0 ((March the 6th  2019) by Bibopp :
+	- Update Stuck Elementals
+	- updated Sell Function
