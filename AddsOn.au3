@@ -1,8 +1,5 @@
 #include-once
-#RequireAdmin
-#include "GWA2_Headers.au3"
 #include <Array.au3>
-#include "GWA2.au3"
 
 
 ;GENERAL THNX to miracle444 for his work with GWA2

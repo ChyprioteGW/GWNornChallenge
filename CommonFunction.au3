@@ -1,6 +1,5 @@
 #include-once
-#include "GWA2_Headers.au3"
-#include "GWA2.au3"
+#include "../GWA2.au3"
 #include "AddsOn.au3"
 
 #include <ButtonConstants.au3>
