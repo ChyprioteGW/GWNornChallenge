@@ -58,8 +58,6 @@ Global Const $ITEM_ID_SHAMROCK_ALE = 22190
 Global Const $ITEM_ID_WAYFARERS_MARK = 37765
 ;~ General Items
 Global $General_Items_Array[6] = [2989, 2991, 2992, 5899, 5900, 22751]
-Global Const $ITEM_ID_Lockpicks = 22751
-
 #EndRegion Constants
 
 
