@@ -213,32 +213,6 @@ Func CurrentAction($TEXT)
     UpdateLock()
 EndFunc   ;==>CurrentAction
 
-
-Func WaitForLoad()
-    CurrentAction("Loading zone")
-    InitMapLoad()
-    $deadlock = 0
-    Do
-        Sleep(100)
-        $deadlock += 100
-        $load = GetMapLoading()
-        $lMe = GetAgentByID(-2)
-
-    Until $load = 2 And DllStructGetData($lMe, 'X') = 0 And DllStructGetData($lMe, 'Y') = 0 Or $deadlock > 10000
-
-    $deadlock = 0
-    Do
-        Sleep(100)
-        $deadlock += 100
-        $load = GetMapLoading()
-        $lMe = GetAgentByID(-2)
-
-    Until $load <> 2 And DllStructGetData($lMe, 'X') <> 0 And DllStructGetData($lMe, 'Y') <> 0 Or $deadlock > 30000
-    CurrentAction("Load complete")
-    rndslp(3000)
-EndFunc   ;==>WaitForLoad
-
-
 Func AggroMoveToEx($x, $y, $s = "", $z = 1450)
     Local $TimerToKill = TimerInit()
     CurrentAction("Hunting " & $s)

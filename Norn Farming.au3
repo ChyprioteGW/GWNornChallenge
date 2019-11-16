@@ -36,7 +36,7 @@
 Opt("GUICloseOnESC", False)
 
 ; === Maps ===
-Global $townOlafstead = 645
+Global $OLAFSTEAD = 645
 
 Global $norn_title_at_begining
 Global $DeadOnTheRun = 0, $tpspirit = 0
@@ -53,10 +53,7 @@ While 1
             FileOpen($File)
             $norn_title_at_begining = GetNornTitle()
         EndIf
-        If GetMapID() <> $townOlafstead Then
-            ZoneMap($townOlafstead, 0)
-            WaitForLoad()
-        EndIf
+        If GetMapID() <> $OLAFSTEAD Then TravelTo($OLAFSTEAD)
         Sleep(200)
         If InventoryIsFull() Then 
             GoMerchant()
@@ -93,9 +90,10 @@ Func GoOutside()
 ;~    LoadSkillTemplate("OgCjkqrK7SlXQXjXCYWgDYiXsXA")
 ;~    RndSleep(500)
     CurrentAction("Leaving town")
-    MoveTo(-141, 1416)
-    Move(-1448, 1171)
-    WaitForLoad()
+    Do
+        MoveTo(-141, 1416)
+        MoveTo(-1448, 1171)
+    Until GetMapID() <> $OLAFSTEAD
 EndFunc   ;==>GoOutside
 
 Func status()
@@ -135,8 +133,8 @@ EndFunc   ;==>TpSpirit
 
 Func NornPointUpdate()
     $norn_title = GetNornTitle()
-    $point_earn = $norn_title - $norn_title_at_begining
-    GUICtrlSetData($gui_status_point, $point_earn)
+    $POINTS_EARNED = $norn_title - $norn_title_at_begining
+    GUICtrlSetData($gui_status_point, $POINTS_EARNED)
 EndFunc   ;==>NornPointUpdate
 
 Func Vanquish()
