@@ -327,7 +327,6 @@ Func Fight($z, $s = "enemies")
 
                     If $recharge = 0 And $energy >= $intSkillEnergy[$i] And $adrenaline >= ($intSkillAdrenaline[$i] * 25 - 25) And $lDistance < 1020 Then
                         $useSkill = $i + 1
-                        ;PingSleep(250)
                         $variabletosort = 0
                         UseSkill($useSkill, $target)
                         RndSlp($intSkillCastTime[$i] + 500)

@@ -31,7 +31,7 @@
 #EndRegion About
 
 #include "CommonFunction.au3"
-#include "../SimpleInventory.au3"
+#include "../_SimpleInventory.au3"
 
 Opt("GUICloseOnESC", False)
 
