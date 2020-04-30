@@ -499,3 +499,122 @@ EndFunc   ;==>CheckArea
     $coords[0] = DllStructGetData($Me, 'X')
     $coords[1] = DllStructGetData($Me, 'Y')
 #ce
+
+Func GetItemMaxReq8($aItem)
+	Local $Type = DllStructGetData($aItem, "Type")
+	Local $Dmg = GetItemMaxDmg($aItem)
+	Local $Req = GetItemReq($aItem)
+
+	Switch $Type
+	Case 12 ;~ Offhand
+		If $Dmg == 12 And $Req == 8 Then
+		Return True
+		Else
+		Return False
+		EndIf
+	Case 24 ;~ Shield
+		If $Dmg == 16 And $Req == 8 Then
+		Return True
+		Else
+		Return False
+		EndIf
+	Case 27 ;~ Sword
+		If $Dmg == 22 And $Req == 8 Then
+		Return True
+		Else
+		Return False
+		EndIf
+	EndSwitch
+EndFunc
+
+Func IsRareSkin($aItem)
+	Local $ModelID = DllStructGetData($aItem, "ModelID")
+
+	Switch $ModelID
+	Case 399
+		Return True ; Crystallines
+	Case 344
+		Return True ; Magmas Shield
+	Case 603
+		Return True ; Orrian Earth Staff
+	Case 391
+		Return True ; Raven Staff
+	Case 926
+		Return True ; Cele Scepter All Attribs
+	Case 942, 943
+		Return True ; Cele Shields (Str + Tact)
+	Case 858, 776, 789
+		Return True ; Paper Fans (Divine, Soul, Energy)
+	Case 905
+		Return True ; Divine Scroll (Canthan)
+	Case 785
+		Return True ; Celestial Staff all attribs.
+	Case 1022, 874, 875
+		Return True ; Jug - DF, SF, ES
+	Case 952, 953
+		Return True ; Kappa Shields (Str + Tact)
+	Case 736, 735, 778, 777, 871, 872, 741, 870, 873, 871, 872, 869, 744, 1101
+		Return True ; All rare skins from Cantha Mainland
+	Case 945, 944, 940, 941, 950, 951, 1320, 1321, 789, 896, 875
+		Return True ; All rare skins from Dragon Moss
+	Case 959, 960
+		Return True ; Plagueborn Shields
+	Case 1026, 1027
+		Return True ; Plagueborn Focus (ES, DF)
+	Case 341
+		Return True ; Stone Summit Shield
+	Case 342
+		Return True ; Summit Warlord Shield
+	Case 1985
+		Return True ; Eaglecrest Axe
+	Case 2048
+		Return True ; Wingcrest Maul
+	Case 2071
+		Return True ; Voltaic Spear
+	Case 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973
+		Return True ; Froggy Scepters
+	Case 1197, 1556, 1569, 1439, 1563
+		Return True ; Elonian Swords (Colossal, Ornate, Tattooed etc)
+	Case 21439
+		Return True ; Polar Bear
+	Case 1896
+		Return True ; Draconic Aegis - Str
+	Case 36674
+		Return True ; Envoy Staff (Divine?)
+	Case 1976
+		Return True ; Emerald Blade
+	Case 1978
+		Return True ; Draconic Scythe
+	Case 32823
+		Return True ; Dhuums Soul Reaper
+	Case 208
+		Return True ; Ascalon War Hammer
+	Case 1315
+		Return True ; Gloom Shield (Str)
+	Case 1039
+		Return True ; Zodiac Shield (Str)
+	Case 1037
+		Return True ; Exalted Aegis (Str)
+	Case 1320
+		Return True ; Guardian Of The Hunt (Str)
+	Case 956
+		Return True ; Outcast Shield (Str)
+	Case 336
+		Return True ; Shadow Shield (OS - Str)
+	Case 120
+		Return True ; Sephis Axe (OS)
+	Case 114
+		Return True ; Dwarven Axe (OS)
+	Case 794
+		Return True ; Oni Blade
+	Case 118
+		Return True ; Serpent Axe (OS)
+	Case 795
+		Return True ; Golden Phoenix Blade (OS)
+	Case 1052
+		Return True ; Darkwing Defender (Str)
+	Case 2236
+		Return True ; Enamaled Shield (Tact)
+	EndSwitch
+	Return False
+EndFunc
